@@ -1,0 +1,123 @@
+/* config - Launcher */
+
+configuration {
+    modi:                       "drun,run";
+    font:                       "JetBrains Mono Nerd Font 10";
+    show-icons:                 true;
+    drun-display-format:        "{name}";
+    hover-select:               true;
+}
+
+/* config and colors ---- */
+@import "default.rasi"
+
+
+#window {
+    // transparency: "real";
+    /* Utilise la couleur de fond générée par Pywal (opaque) */
+    background-color: @background-window;
+}
+
+/* ---- Window ---- */
+window {
+    location:                   center;
+    anchor:                     center;
+    border:                     0px;
+    border-radius:              15px;
+
+    width:                      55%;
+}
+
+/* Main Box ---------------------------------------- */
+mainbox {
+    orientation:                horizontal;
+    children:                   [ "img", "listbox"];
+    background-color:           transparent;
+
+    spacing:                    24px;
+}
+
+/* Listbox ------------------------------------------ */
+listbox {
+    spacing:                     20px;
+    background-color:            transparent;
+    orientation:                 vertical;
+    children:                    [ "inputbar", "message", "listview" ];
+}
+
+/* Listview ---------------------------------------- */
+listview {
+    columns:                     2;
+    lines:                       6;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    
+    spacing:                     16px;
+    background-color:            transparent;
+    padding-right: 5px;
+}
+
+/* Image ----------------------------------------------- */
+img {
+    padding:             64px 128px;
+    oorder-radius:       10px;
+    backgound-color:	 transparent;
+    background-image:    url("/home/djmorganorix/Pictures/current-rofi.png", width);
+}
+
+/* Inputbar ---------------------------------------------- */
+inputbar {
+    children:                    [ "textbox-icon", "entry" ];
+
+    border-radius:               5px;
+    background-color:            @shade-bg;
+    text-color:                  @text;
+
+    spacing:                     0px;
+    margin:                      0px;
+    padding:                     14px;
+}
+
+textbox-icon {
+    expand:                      false;
+    background-color:            transparent;
+    text-color:                  inherit;
+    str: "  ";
+}
+
+/* Entry ----------------------------------------------- */
+entry {
+    cursor:                     text;
+    expand:                     false;
+    placeholder-color:          inherit;
+    placeholder:                "Select Waybar layout";
+
+    background-color:           transparent;
+    text-color:                 inherit;
+}
+
+/* ---- Elements ---- */
+element {
+    cursor:                     pointer;
+    background-color:           transparent;
+    border-radius:              5px;
+    padding:                    12px;
+}
+
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+element-icon {
+    background-color: transparent;
+    padding: 5px; 
+  }

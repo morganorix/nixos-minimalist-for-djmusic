@@ -1,0 +1,184 @@
+/* 1. On applique le fond semi-transparent UNIQUEMENT sur la base de la fenêtre */
+window.nemo-window {
+    background-color: rgba(11, 13, 10, 0.9);
+    background-image: none;
+    box-shadow: none;
+}
+
+/* 2. On force ABSOLUMENT tous les conteneurs internes à être transparents */
+/* pour qu'on puisse voir le fond de la fenêtre à travers eux sans cumul */
+.nemo-window .view,
+.nemo-window scrolledwindow,
+.nemo-window .sidebar,
+.nemo-window .sidebar .view,
+.nemo-window treeview,
+.nemo-window treeview.view,
+.nemo-window paned,
+.nemo-window grid,
+.nemo-window box{
+    background-color: transparent;
+    background-image: none;
+    border: none;
+}
+
+.nemo-window header {
+  background-color: transparent;
+  background-image: none;
+}
+
+/* 3. On gère le cas du focus (le fameux voile gris) */
+/* On s'assure que même inactive, la fenêtre garde sa transparence de base */
+.nemo-window:backdrop {
+    background-color: rgba(11, 13, 10, 0.9);
+}
+
+/* Rendre l'en-tête de la liste totalement transparent */
+.nemo-window treeview.view header,
+.nemo-window treeview.view header button,
+.nemo-window scrolledwindow treeview header,
+.nemo-window scrolledwindow treeview header button {
+    background-color: transparent;
+    background-image: none;
+    border-color: transparent;
+    border-style: none;
+    box-shadow: none;
+}
+
+/* Optionnel : Si tu veux que le texte des colonnes reste blanc/clair 
+   mais sans le bloc gris derrière */
+.nemo-window treeview.view header button label {
+    color: #ffffff; /* Ou la couleur de ton choix */
+    text-shadow: none;
+}
+
+.nemo-window .view:backdrop,
+.nemo-window .sidebar .view:backdrop,
+.nemo-window treeview:backdrop {
+    background-color: transparent;
+}
+
+.nemo-window {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+.nemo-window .view {
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 15px;
+}
+
+/* 1. On reprend ce qui fonctionnait (sans les !important) */
+.nemo-window toolbar.primary-toolbar {
+    min-height: 0px;
+    margin: 0px;
+    padding: 0px;
+    border-style: none;
+    border-width: 0px;
+    background-color: transparent;
+    background-image: none;
+    border-radius: 10px;
+}
+
+.nemo-window toolbar.primary-toolbar * {
+    min-height: 0px;
+    margin: 0px;
+    padding: 0px;
+    opacity: 0.0;
+    font-size: 0px;
+    border-width: 0px;
+}
+
+/* 2. On ajoute UNIQUEMENT la marge négative pour manger l'espace vide */
+.nemo-window .nemo-window-pane {
+    margin-top: -10px; 
+}
+
+.nemo-window .sidebar .view {
+	padding: 3px;
+	background-image: none;
+}
+
+.nemo-window paned > separator {
+	background-image: none;
+}
+
+/* 1. Éliminer la barre physique de redimensionnement */
+.nemo-window paned > separator {
+    min-width: 0px;
+    border-style: none;
+    background: none;
+    background-color: transparent;
+}
+
+/* 2. C'est SOUVENT lui le coupable : le cadre autour de la barre latérale */
+.nemo-window scrolledwindow.frame, 
+.nemo-window scrolledwindow {
+    border-width: 0px;
+    border-style: none;
+}
+
+/* 3. Supprimer toute bordure propre à la sidebar et à son contenu */
+.nemo-window .sidebar,
+.nemo-window .sidebar .view,
+.nemo-window .nemo-places-sidebar {
+    border-right-width: 0px;
+    border-right: none;
+    border-style: none;
+    outline: none;
+}
+
+/* 4. Pour les lignes de séparation horizontales internes (entre "Bureau", "Documents") */
+.nemo-window .sidebar treeview.view row {
+    border-bottom: none;
+    box-shadow: none;
+}
+
+.nemo-window scrolledwindow treeview,
+.nemo-window treeview.view {
+    padding: 3px;
+}
+
+.nemo-window notebook scrolledwindow treeview header button,
+.nemo-window notebook label {
+	margin-top: 13px;
+  margin-bottom: 5px;
+}
+
+/* 1. Rendre le conteneur d'onglets (notebook) totalement transparent */
+.nemo-window notebook,
+.nemo-window notebook > header,
+.nemo-window notebook > stack {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+}
+
+/* 2. Rendre la barre d'onglets elle-même invisible */
+.nemo-window notebook tabbox,
+.nemo-window notebook tabs {
+    background-color: transparent;
+    border: none;
+}
+
+/* 3. Style des onglets individuels (pour qu'ils ne grisent pas le fond) */
+.nemo-window notebook tab {
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    padding: 4px 10px;
+}
+
+/* 4. Optionnel : Donner une couleur au texte de l'onglet actif 
+   pour savoir où on est sans avoir de gros bloc gris */
+.nemo-window notebook tab:checked {
+    background-color: rgba(255, 255, 255, 0.1); /* Un léger reflet pour l'onglet actif */
+    border-bottom: 2px solid #ffffff; /* Une petite ligne discrète au lieu d'un fond gris */
+}
+
+/* 5. Gérer le "voile gris" spécifique au notebook quand on perd le focus */
+.nemo-window notebook:backdrop,
+.nemo-window notebook tab:backdrop {
+    background-color: transparent;
+    background-image: none;
+}
